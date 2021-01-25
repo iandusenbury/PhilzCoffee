@@ -1,10 +1,58 @@
 import React from 'react'
-import { Text, View } from 'react-native'
+import { useSelector } from 'react-redux'
+import {
+  Text,
+  View,
+  FlatList,
+  StyleSheet,
+  SafeAreaView,
+  Button,
+} from 'react-native'
 
-export default function Products()  {
+function Item({ id }) {
+  const product = useSelector(state => state.products.products[id])
+
+  // TODO: add action for onPress
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Products</Text>
+    <View style={styles.item}>
+      <Text>{product.title}</Text>
+
+      <Button
+        title="Add to Cart"
+        color="#841584"
+        onPress={() => {}}
+      />
     </View>
   )
 }
+
+export default function Products()  {
+  const productIds = useSelector(state => state.products.productIds)
+
+  const renderItem = ({ item }) => <Item id={item} />
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <Text>Products</Text>
+
+      <FlatList
+        data={productIds}
+        renderItem={renderItem}
+        keyExtractor={item => `${item}`}
+      />
+    </SafeAreaView>
+  )
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingTop: 22
+   },
+  item: {
+    flex: 1,
+    padding: 10,
+    fontSize: 18,
+    alignItems: 'flex-start',
+  }
+})
