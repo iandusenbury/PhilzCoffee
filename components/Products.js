@@ -1,5 +1,7 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { addToCart } from '../actions/products'
+
 import {
   Text,
   View,
@@ -10,6 +12,7 @@ import {
 } from 'react-native'
 
 function Item({ id }) {
+  const dispatch = useDispatch()
   const product = useSelector(state => state.products.products[id])
 
   // TODO: add action for onPress
@@ -20,7 +23,7 @@ function Item({ id }) {
       <Button
         title="Add to Cart"
         color="#841584"
-        onPress={() => {}}
+        onPress={() => dispatch(addToCart(id))}
       />
     </View>
   )
