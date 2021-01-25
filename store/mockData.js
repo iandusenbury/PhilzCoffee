@@ -1,4 +1,4 @@
-const productIds = [
+export const productIds = [
   1,
   2,
   3,
@@ -21,7 +21,7 @@ const productIds = [
   20
 ]
 
-const products = {
+export const products = {
   "1": {
     "id": 1,
     "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
