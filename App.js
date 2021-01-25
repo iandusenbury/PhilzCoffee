@@ -5,7 +5,7 @@
  * @format
  * @flow strict-local
  */
-
+import 'react-native-gesture-handler'
 import React from 'react';
 import {
   SafeAreaView,
@@ -24,13 +24,27 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+import { NavigationContainer } from '@react-navigation/native'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+
 import { Provider } from 'react-redux'
 import store from './store/store'
+
+import Products from './components/Products'
+import Cart from './components/Cart'
+
+const Tab = createBottomTabNavigator()
 
 const App: () => React$Node = () => {
   return (
     <Provider store={store}>
-      <StatusBar barStyle="dark-content" />
+      <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen name="Products" component={Products} />
+        <Tab.Screen name="Cart" component={Cart} />
+      </Tab.Navigator>
+    </NavigationContainer>
+      {/* <StatusBar barStyle="dark-content" />
       <SafeAreaView>
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
@@ -70,7 +84,7 @@ const App: () => React$Node = () => {
             <LearnMoreLinks />
           </View>
         </ScrollView>
-      </SafeAreaView>
+      </SafeAreaView> */}
     </Provider>
   );
 };
