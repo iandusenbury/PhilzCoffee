@@ -15,7 +15,6 @@ function Item({ id }) {
   const dispatch = useDispatch()
   const product = useSelector(state => state.products.products[id])
 
-  // TODO: add action for onPress
   return (
     <View style={styles.item}>
       <Text>{product.title}</Text>

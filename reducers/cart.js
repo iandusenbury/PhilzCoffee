@@ -2,7 +2,7 @@ import { ADD_TO_CART } from '../actions/products'
 
 const initialState = {
   items: {
-    [1]: { quantity: 1 }
+    [1]: { id: 1, quantity: 1 }
   }
 }
 
@@ -19,7 +19,7 @@ function reducer(state = initialState, { type, payload }) {
       return {
         items: {
           ...state.items,
-          [id]: { quantity }
+          [id]: { id, quantity }
         },
       }
 
