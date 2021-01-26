@@ -7,24 +7,45 @@ import {
   SafeAreaView,
   StyleSheet,
   FlatList,
-  Button
 } from 'react-native'
 
+import { Button, Icon, ListItem, Avatar } from 'react-native-elements'
+import { incItemQuantity, decItemQuantity, removeItem } from '../actions/cart'
+
+// TODO: extract into own component
 function Item({ id, quantity }) {
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
   const product = useSelector(state => state.products.products[id])
 
   return (
-    <View style={styles.item}>
-      <Text>{product.title}</Text>
-      <Text>quantity: {quantity}</Text>
-
-      <Button
-        title="Remove"
-        color="#841584"
-        onPress={() => {}}
-      />
-    </View>
+    <ListItem bottomDivider>
+      <Avatar source={{uri: product.image}} />
+      <ListItem.Content>
+        <ListItem.Title>{product.title}</ListItem.Title>
+        <View style={styles.subtitle}>
+          <Icon
+            name='minus-square-o'
+            type='font-awesome'
+            color='#000'
+            onPress={() => dispatch(decItemQuantity(id))}
+          />
+          <Text style={styles.quantity}>quantity: {quantity} </Text>
+          <Icon
+            style={styles.minusIcon}
+            name='plus-square-o'
+            type='font-awesome'
+            color='#000'
+            onPress={() => dispatch(incItemQuantity(id))}
+          />
+          <Icon
+            name='trash'
+            type='font-awesome'
+            color='#FF0000'
+            onPress={() => dispatch(removeItem(id))}
+          />
+          </View>
+      </ListItem.Content>
+    </ListItem>
   )
 }
 
@@ -32,12 +53,12 @@ export default function Cart() {
   const items = useSelector(state => state.cart.items)
   const formattedData = Object.values(items)
 
-  const renderItem = ({ item }) => <Item id={item.id} quantity={item.quantity} />
+  const renderItem = ({ item }) => <Item key={item.id} id={item.id} quantity={item.quantity} />
   
   return (
     <SafeAreaView style={styles.container}>
       <Text>Cart</Text>
-
+      
       <FlatList
         data={formattedData}
         renderItem={renderItem}
@@ -57,6 +78,17 @@ const styles = StyleSheet.create({
     padding: 10,
     fontSize: 18,
     alignItems: 'flex-start',
+  },
+  subtitle: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  quantity: {
+    paddingLeft: 10,
+    paddingRight: 10,
+  },
+  minusIcon: {
+    paddingRight: 10,
   }
 })
 

@@ -8,6 +8,8 @@ target 'PhilzCoffee' do
 
   use_react_native!(:path => config["reactNativePath"])
 
+
+
   target 'PhilzCoffeeTests' do
     inherit! :complete
     # Pods for testing
@@ -31,3 +33,5 @@ target 'PhilzCoffee-tvOS' do
     # Pods for testing
   end
 end
+
+pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'

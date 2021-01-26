@@ -8,23 +8,36 @@ import {
   FlatList,
   StyleSheet,
   SafeAreaView,
-  Button,
 } from 'react-native'
+import { Button, ListItem, Avatar, Icon } from 'react-native-elements'
 
 function Item({ id }) {
   const dispatch = useDispatch()
   const product = useSelector(state => state.products.products[id])
 
   return (
-    <View style={styles.item}>
-      <Text>{product.title}</Text>
+    <ListItem>
+      <Avatar source={{uri: product.image}} />
+      <ListItem.Content style={styles.item}>
+        <ListItem.Title>{product.title}</ListItem.Title>
 
-      <Button
-        title="Add to Cart"
-        color="#841584"
-        onPress={() => dispatch(addToCart(id))}
-      />
-    </View>
+        <ListItem.Subtitle>
+          <Button
+            style={styles.addToCartButton}
+            title="Add to Cart"
+            onPress={() => dispatch(addToCart(product.id))}
+            icon={
+              <Icon
+                style={styles.cartIcon}
+                name="cart-plus"
+                type='font-awesome'
+                color="#fff"
+              />
+            }
+          />
+        </ListItem.Subtitle>
+      </ListItem.Content>
+    </ListItem>
   )
 }
 
@@ -53,8 +66,13 @@ const styles = StyleSheet.create({
    },
   item: {
     flex: 1,
-    padding: 10,
     fontSize: 18,
     alignItems: 'flex-start',
+  },
+  addToCartButton: {
+    paddingTop: 10
+  },
+  cartIcon: {
+    paddingRight: 10
   }
 })
