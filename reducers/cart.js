@@ -1,5 +1,9 @@
-import { ADD_TO_CART } from '../actions/products'
-import { INC_ITEM_QUANTITY, DEC_ITEM_QUANTITY, REMOVE_ITEM } from '../actions/cart'
+import {
+  INC_ITEM_QUANTITY,
+  DEC_ITEM_QUANTITY,
+  REMOVE_ITEM,
+  ADD_TO_CART
+} from '../actions/cart'
 
 import createReducer from './createReducer'
 

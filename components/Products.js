@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { addToCart } from '../actions/products'
+import { addToCart } from '../actions/cart'
 
 import {
   Text,
@@ -16,7 +16,7 @@ function Item({ id }) {
   const product = useSelector(state => state.products.products[id])
 
   return (
-    <ListItem>
+    <ListItem bottomDivider>
       <Avatar source={{uri: product.image}} />
       <ListItem.Content style={styles.item}>
         <ListItem.Title>{product.title}</ListItem.Title>
@@ -48,7 +48,7 @@ export default function Products()  {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text>Products</Text>
+      <Text style={styles.titleText}>Products</Text>
 
       <FlatList
         data={productIds}
@@ -62,7 +62,7 @@ export default function Products()  {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 22
+    paddingTop: 22,
    },
   item: {
     flex: 1,
@@ -74,5 +74,10 @@ const styles = StyleSheet.create({
   },
   cartIcon: {
     paddingRight: 10
+  },
+  titleText: { // TODO: extract out for reuse
+    fontSize: 30,
+    alignItems: 'center',
+    padding: 20
   }
 })

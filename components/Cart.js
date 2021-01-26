@@ -9,7 +9,7 @@ import {
   FlatList,
 } from 'react-native'
 
-import { Button, Icon, ListItem, Avatar } from 'react-native-elements'
+import { Icon, ListItem, Avatar } from 'react-native-elements'
 import { incItemQuantity, decItemQuantity, removeItem } from '../actions/cart'
 
 // TODO: extract into own component
@@ -57,7 +57,7 @@ export default function Cart() {
   
   return (
     <SafeAreaView style={styles.container}>
-      <Text>Cart</Text>
+      <Text style={styles.titleText}>Cart</Text>
       
       <FlatList
         data={formattedData}
@@ -89,6 +89,11 @@ const styles = StyleSheet.create({
   },
   minusIcon: {
     paddingRight: 10,
+  },
+  titleText: { // TODO: extract out for reuse
+    fontSize: 30,
+    alignItems: 'center',
+    padding: 20,
   }
 })
 

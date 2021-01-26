@@ -1,4 +1,10 @@
 // would use a createAction helper in production
+export const ADD_TO_CART = 'ADD_TO_CART'
+export const addToCart = (id) => ({
+  type: ADD_TO_CART,
+  payload: { id }
+})
+
 export const INC_ITEM_QUANTITY = 'INC_ITEM_QUANTITY'
 export const incItemQuantity = (id) => ({
   type: INC_ITEM_QUANTITY,

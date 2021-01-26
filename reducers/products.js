@@ -1,13 +1,12 @@
 import { products, productIds } from '../store/mockData'
+import createReducer from './createReducer'
+
+// set mock data in initial state
 const initialState = {
   products,
   productIds,
 }
 
-function reducer(state = initialState, action) {
-  switch(action.type) {
-    default: return state
-  }
-}
+const handlers = {}
 
-export default reducer
+export default createReducer(initialState, handlers)
